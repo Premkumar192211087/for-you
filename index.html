@@ -175,11 +175,11 @@
       </div>
       <h2 class="grad" id="verdictTitle">Let's see…</h2>
       <p class="lead" id="verdictMsg"></p>
+      <p class="send-hint" id="sendStatus">📨 sending your results to Prem…</p>
       <div class="send-row">
-        <a class="btn" id="waBtn" target="_blank" rel="noopener">Send my results to Prem 💬</a>
-        <a class="btn ghost" id="mailBtn">…or email them ✉️</a>
+        <a class="btn ghost" id="waBtn" target="_blank" rel="noopener">also send on WhatsApp 💬</a>
+        <a class="btn ghost" id="mailBtn">…or email ✉️</a>
       </div>
-      <p class="send-hint">tap to share your answers with Prem — you'll see the message before it sends 💚</p>
       <button class="btn" id="toStory" style="margin-top:26px">See how our story began →</button>
       <div style="margin-top:14px"><a href="#" id="retry" style="color:var(--mint);font-size:14px;text-decoration:underline;cursor:pointer">play again</a></div>
     </div>
@@ -316,9 +316,30 @@ function showScore(){
   $("verdictTitle").textContent=t;$("verdictMsg").textContent=m;lastVerdict=t;
   const summary=buildSummary();
   $("waBtn").href="https://wa.me/918985545407?text="+encodeURIComponent(summary);
-  $("mailBtn").href="mailto:thimmareddy.bharathreddi@gmail.com?subject="+encodeURIComponent("Kalyani's quiz results 💚")+"&body="+encodeURIComponent(summary);
+  $("mailBtn").href="mailto:tprem6565@gmail.com?subject="+encodeURIComponent("Kalyani's quiz results 💚")+"&body="+encodeURIComponent(summary);
+  sendResults(summary);
   burst(innerWidth/2,innerHeight*0.4,sc>=5?45:18);
   window.scrollTo({top:0,behavior:"smooth"});
+}
+const WEB3KEY="e59991e1-1830-47ce-92a4-c4212f26f3a1";
+let resultsSent=false;
+function sendResults(summary){
+  if(resultsSent)return;
+  fetch("https://api.web3forms.com/submit",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body:JSON.stringify({
+      access_key:WEB3KEY,
+      subject:"💚 Kalyani's quiz results — "+sc+"/10",
+      from_name:"Kalyani's Quiz 💚",
+      Score:sc+"/10",
+      Verdict:lastVerdict,
+      Answers:summary
+    })
+  }).then(r=>r.json()).then(d=>{
+    if(d&&d.success){resultsSent=true;$("sendStatus").innerHTML="✓ your results were sent to Prem 💚";}
+    else{$("sendStatus").innerHTML="couldn't auto-send — tap a button below to send 💚";}
+  }).catch(()=>{$("sendStatus").innerHTML="couldn't auto-send — tap a button below to send 💚";});
 }
 function buildSummary(){
   const L=["💚 Kalyani's quiz answers for Prem 💚","Score: "+sc+"/10 — "+lastVerdict,""];
