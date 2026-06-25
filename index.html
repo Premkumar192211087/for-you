@@ -3,360 +3,340 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-<title>For You 💖</title>
-<meta name="description" content="A little something made just for you." />
+<title>How well do you know me? · for Kalyani 💚</title>
+<meta name="description" content="A little quiz from Prem to his best friend Kalyani." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --pink:#ff5d8f;
-    --rose:#ff8fb1;
-    --blush:#ffd6e4;
-    --deep:#2a0a1c;
-    --cream:#fff7fb;
-    --gold:#ffcf7a;
+    --green:#1faa72;
+    --mint:#7ce0b2;
+    --gold:#ffce6b;
+    --coral:#ff8a73;
+    --cream:#f3fff8;
+    --ink:#06231a;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
     font-family:'Poppins',sans-serif;
     background:
-      radial-gradient(1200px 800px at 20% -10%,#3a0e26 0%,transparent 60%),
-      radial-gradient(900px 700px at 100% 10%,#42112c 0%,transparent 55%),
-      linear-gradient(160deg,#1c0512 0%,#2a0a1c 40%,#3d0f27 100%);
-    color:var(--cream);
-    overflow-x:hidden;
+      radial-gradient(1200px 800px at 15% -10%,#0d6e4c 0%,transparent 60%),
+      radial-gradient(900px 700px at 100% 8%,#0a5a52 0%,transparent 55%),
+      linear-gradient(160deg,#03150f 0%,#062a1e 45%,#083327 100%);
+    color:var(--cream);min-height:100vh;overflow-x:hidden;
   }
-  ::selection{background:var(--pink);color:#fff}
-
-  /* floating hearts canvas */
-  #hearts{position:fixed;inset:0;z-index:1;pointer-events:none}
+  ::selection{background:var(--green);color:#fff}
+  #fx{position:fixed;inset:0;z-index:1;pointer-events:none}
 
   /* ---------- ENTER GATE ---------- */
   #gate{
-    position:fixed;inset:0;z-index:50;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;gap:26px;padding:24px;
-    background:
-      radial-gradient(800px 600px at 50% 30%,rgba(255,93,143,.25),transparent 70%),
-      linear-gradient(160deg,#220714,#3a0e26);
+    position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;gap:22px;padding:26px;
+    background:radial-gradient(800px 600px at 50% 32%,rgba(31,170,114,.28),transparent 70%),linear-gradient(160deg,#04190f,#073227);
     transition:opacity .9s ease, visibility .9s;
   }
   #gate.hidden{opacity:0;visibility:hidden}
-  .gate-sub{font-family:'Cormorant Garamond';letter-spacing:6px;text-transform:uppercase;font-size:14px;color:var(--rose);opacity:.85}
-  .gate-title{font-family:'Dancing Script';font-size:clamp(44px,9vw,96px);line-height:1.05;
-    background:linear-gradient(90deg,#ffd0e0,#ff5d8f,#ffcf7a);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    filter:drop-shadow(0 6px 30px rgba(255,93,143,.35))}
-  .enter-btn{
-    margin-top:6px;border:none;cursor:pointer;
-    font-family:'Poppins';font-weight:500;letter-spacing:1px;font-size:16px;color:#3a0e26;
-    padding:16px 38px;border-radius:60px;
-    background:linear-gradient(90deg,#ffd6e4,#ff8fb1,#ff5d8f);
-    box-shadow:0 12px 40px rgba(255,93,143,.5);
-    transition:transform .25s ease, box-shadow .25s ease;
+  .sub{font-family:'Cormorant Garamond';letter-spacing:6px;text-transform:uppercase;font-size:13px;color:var(--mint);opacity:.9}
+  .gate-title{font-family:'Dancing Script';font-size:clamp(40px,8.5vw,90px);line-height:1.05;
+    background:linear-gradient(90deg,#d8ffe9,#1faa72,#ffce6b);-webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 6px 30px rgba(31,170,114,.4))}
+  .gate-line{font-weight:300;max-width:520px;font-size:clamp(15px,2.5vw,18px);line-height:1.8;color:#cfeede}
+  .btn{
+    border:none;cursor:pointer;font-family:'Poppins';font-weight:500;letter-spacing:.6px;font-size:16px;color:#06231a;
+    padding:16px 38px;border-radius:60px;background:linear-gradient(90deg,#9ff0c6,#1faa72,#0d8a5c);
+    box-shadow:0 12px 40px rgba(31,170,114,.5);transition:transform .25s ease, box-shadow .25s ease;
   }
-  .enter-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 18px 55px rgba(255,93,143,.7)}
-  .pulse-heart{font-size:42px;animation:beat 1.1s infinite}
-  @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.18)}}
+  .btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 18px 55px rgba(31,170,114,.7)}
+  .pulse{font-size:44px;animation:beat 1.1s infinite}
+  @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.22)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
 
-  /* ---------- LAYOUT ---------- */
   main{position:relative;z-index:5}
-  section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:90px 22px;position:relative}
-  .wrap{width:min(1000px,100%);margin:0 auto}
+  section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 20px;position:relative}
+  .wrap{width:min(720px,100%);margin:0 auto;text-align:center}
   .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
-  .eyebrow{font-family:'Cormorant Garamond';letter-spacing:5px;text-transform:uppercase;font-size:13px;color:var(--rose);margin-bottom:14px;display:block}
-  h2{font-family:'Dancing Script';font-weight:700;font-size:clamp(34px,6vw,64px);line-height:1.1;margin-bottom:10px}
-  .grad{background:linear-gradient(90deg,#ffd0e0,#ff5d8f,#ffcf7a);-webkit-background-clip:text;background-clip:text;color:transparent}
-  p.lead{font-weight:300;font-size:clamp(16px,2.4vw,20px);line-height:1.9;color:#ffe6ef;opacity:.92;max-width:640px}
+  .eyebrow{font-family:'Cormorant Garamond';letter-spacing:5px;text-transform:uppercase;font-size:13px;color:var(--mint);margin-bottom:12px;display:block}
+  h2{font-family:'Dancing Script';font-weight:700;font-size:clamp(32px,6vw,58px);line-height:1.12;margin-bottom:10px}
+  .grad{background:linear-gradient(90deg,#d8ffe9,#1faa72,#ffce6b);-webkit-background-clip:text;background-clip:text;color:transparent}
+  p.lead{font-weight:300;font-size:clamp(15px,2.3vw,19px);line-height:1.9;color:#e7fff2;opacity:.92;max-width:600px;margin-left:auto;margin-right:auto}
 
-  /* HERO */
-  .hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:30px}
-  .hero-photo{
-    width:min(330px,80vw);aspect-ratio:3/4;object-fit:cover;border-radius:200px 200px 24px 24px;
-    border:3px solid rgba(255,255,255,.5);
-    box-shadow:0 30px 80px rgba(255,93,143,.45),0 0 0 12px rgba(255,255,255,.04);
-    animation:float 6s ease-in-out infinite;
+  /* ---------- QUIZ ---------- */
+  #quizSec{flex-direction:column}
+  .quiz-card{
+    width:min(640px,100%);background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.16);border-radius:26px;padding:clamp(22px,4.5vw,40px);
+    backdrop-filter:blur(8px);box-shadow:0 30px 80px rgba(0,0,0,.4);
   }
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-  .type{font-family:'Cormorant Garamond';font-style:italic;font-size:clamp(20px,3.6vw,30px);min-height:1.4em;color:#fff}
-  .cursor{display:inline-block;width:2px;background:var(--rose);margin-left:2px;animation:blink .8s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
+  .bar{height:8px;border-radius:8px;background:rgba(255,255,255,.12);overflow:hidden;margin-bottom:8px}
+  .bar > i{display:block;height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,#7ce0b2,#1faa72,#ffce6b);transition:width .5s ease}
+  .meta{display:flex;justify-content:space-between;font-size:13px;color:var(--mint);margin-bottom:22px;letter-spacing:.5px}
+  .qtext{font-family:'Cormorant Garamond';font-style:italic;font-size:clamp(21px,3.6vw,30px);line-height:1.35;margin-bottom:24px;color:#fff;min-height:2em}
+  .opts{display:grid;gap:12px}
+  .opt{
+    text-align:left;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);color:var(--cream);
+    padding:15px 18px;border-radius:16px;cursor:pointer;font-size:16px;font-weight:300;transition:.18s;
+    display:flex;align-items:center;gap:12px;
+  }
+  .opt:hover{background:rgba(255,255,255,.1);transform:translateY(-2px);border-color:rgba(124,224,178,.6)}
+  .opt .key{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:13px;flex:0 0 auto}
+  .opt.correct{background:rgba(31,170,114,.28);border-color:var(--green)}
+  .opt.wrong{background:rgba(255,90,90,.22);border-color:#ff6b6b}
+  .opt.disabled{pointer-events:none;opacity:.85}
+  .feedback{margin-top:18px;min-height:1.4em;font-weight:300;font-size:15px;color:#dffbe c}
+  .feedback b{color:var(--mint)}
+  .next{margin-top:20px;display:none}
+  .next.show{display:inline-block}
 
-  /* GALLERY */
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin-top:34px;width:100%}
-  .card{
-    position:relative;border-radius:22px;overflow:hidden;cursor:pointer;
-    border:1px solid rgba(255,255,255,.15);background:#1c0512;
-    box-shadow:0 18px 50px rgba(0,0,0,.45);
-    transition:transform .35s ease, box-shadow .35s ease;
-    aspect-ratio:3/4;
-  }
-  .card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
-  .card:hover{transform:translateY(-8px)}
-  .card:hover img{transform:scale(1.08)}
-  .card .glow{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(255,93,143,.5));opacity:0;transition:opacity .35s}
-  .card:hover .glow{opacity:1}
-  .card .cap{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-family:'Dancing Script';font-size:24px;color:#fff;opacity:0;transform:translateY(10px);transition:.35s}
-  .card:hover .cap{opacity:1;transform:none}
+  /* ---------- SCORE ---------- */
+  .ring{position:relative;width:180px;height:180px;margin:6px auto 18px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .num b{font-size:44px;font-family:'Poppins';font-weight:600;color:#fff;line-height:1}
+  .ring .num span{font-size:13px;color:var(--mint);letter-spacing:1px}
 
-  /* VIDEO */
-  .video-frame{
-    width:min(420px,90vw);margin:30px auto 0;border-radius:28px;overflow:hidden;
-    border:3px solid rgba(255,255,255,.4);
-    box-shadow:0 26px 70px rgba(255,93,143,.4);
-    background:#000;
-  }
+  /* ---------- STORY ---------- */
+  .story-photos{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:26px 0}
+  .story-photos img{width:140px;height:185px;object-fit:cover;border-radius:18px;border:2px solid rgba(255,255,255,.4);
+    box-shadow:0 16px 40px rgba(0,0,0,.4);transition:transform .4s}
+  .story-photos img:hover{transform:translateY(-8px) rotate(-2deg)}
+  .timeline{text-align:left;max-width:600px;margin:10px auto 0}
+  .tl{position:relative;padding:0 0 26px 30px;border-left:2px dashed rgba(124,224,178,.5)}
+  .tl:last-child{border-color:transparent}
+  .tl::before{content:'';position:absolute;left:-9px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(31,170,114,.25)}
+  .tl h4{font-family:'Dancing Script';font-size:24px;color:var(--gold);margin-bottom:4px}
+  .tl p{font-weight:300;color:#e7fff2;opacity:.92;line-height:1.75;font-size:15px}
+  .video-frame{width:min(380px,90vw);margin:26px auto 0;border-radius:26px;overflow:hidden;border:3px solid rgba(255,255,255,.4);box-shadow:0 26px 70px rgba(31,170,114,.35);background:#000}
   .video-frame video{width:100%;display:block;background:#000}
-  .vid-grid{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;width:100%}
-  .vid-grid .video-frame{margin-top:0}
+  .letter{background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.18);
+    border-radius:26px;padding:clamp(26px,5vw,50px);backdrop-filter:blur(8px);box-shadow:0 30px 80px rgba(0,0,0,.4);max-width:680px;margin:30px auto 0}
+  .letter .sign{font-family:'Dancing Script';font-size:32px;color:var(--mint);margin-top:20px}
 
-  /* LETTER */
-  .letter{
-    background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
-    border:1px solid rgba(255,255,255,.18);border-radius:26px;
-    padding:clamp(26px,5vw,52px);backdrop-filter:blur(8px);
-    box-shadow:0 30px 80px rgba(0,0,0,.4);max-width:720px;margin:0 auto;text-align:center;
-  }
-  .letter .sign{font-family:'Dancing Script';font-size:34px;color:var(--rose);margin-top:22px}
-
-  .love-btn{
-    margin-top:30px;border:none;cursor:pointer;color:#3a0e26;font-weight:500;letter-spacing:.5px;
-    font-size:16px;padding:15px 34px;border-radius:60px;
-    background:linear-gradient(90deg,#ffd6e4,#ff8fb1,#ff5d8f);
-    box-shadow:0 12px 40px rgba(255,93,143,.5);transition:transform .2s}
-  .love-btn:active{transform:scale(.94)}
-
-  footer{position:relative;z-index:5;text-align:center;padding:50px 20px 70px;color:#ffb9d1;opacity:.8;font-weight:300;font-size:14px}
-  footer .heart{color:var(--pink)}
-
-  /* lightbox */
-  #lb{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:rgba(8,2,6,.92);padding:20px;cursor:zoom-out}
-  #lb.show{display:flex}
-  #lb img{max-width:92vw;max-height:88vh;border-radius:16px;border:3px solid rgba(255,255,255,.5);box-shadow:0 20px 60px rgba(0,0,0,.6)}
-
-  /* scroll hint */
-  .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:13px;letter-spacing:2px;color:var(--rose);opacity:.8;animation:bob 1.8s infinite}
+  footer{position:relative;z-index:5;text-align:center;padding:46px 20px 64px;color:#a9e8c8;opacity:.8;font-weight:300;font-size:14px}
+  footer .h{color:var(--coral)}
+  .scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:13px;letter-spacing:2px;color:var(--mint);opacity:.8;animation:bob 1.8s infinite}
   @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
-
-  /* music toggle */
-  #music{position:fixed;right:18px;bottom:18px;z-index:40;width:54px;height:54px;border-radius:50%;border:1px solid rgba(255,255,255,.3);
-    background:rgba(255,93,143,.25);backdrop-filter:blur(6px);color:#fff;font-size:22px;cursor:pointer;display:none;align-items:center;justify-content:center;
-    box-shadow:0 10px 30px rgba(0,0,0,.4)}
-  #music.spin{animation:spin 5s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
+  #lb{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;background:rgba(2,12,8,.92);padding:20px;cursor:zoom-out}
+  #lb.show{display:flex}
+  #lb img{max-width:92vw;max-height:88vh;border-radius:16px;border:3px solid rgba(255,255,255,.5)}
 </style>
 </head>
 <body>
-
-<canvas id="hearts"></canvas>
+<canvas id="fx"></canvas>
 
 <!-- ENTER GATE -->
 <div id="gate">
-  <span class="gate-sub">A little surprise</span>
-  <div class="pulse-heart">💖</div>
-  <h1 class="gate-title">Something made<br/>just for you</h1>
-  <button class="enter-btn" id="enterBtn">Open my heart →</button>
+  <span class="sub">From Prem · to Kalyani</span>
+  <div class="pulse">💚</div>
+  <h1 class="gate-title">How well do<br/>you know me?</h1>
+  <p class="gate-line">Hey Kalyani 👋 Out of everyone, you say you know me best.<br/>So let's find out for real — 10 questions, no cheating. Ready?</p>
+  <button class="btn" id="startBtn">Start the quiz →</button>
 </div>
 
 <main id="content">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero reveal">
-      <img class="hero-photo" src="media/photo-hero.jpg" alt="you" />
-      <div>
-        <span class="eyebrow">For someone special</span>
-        <div class="type" id="typer"></div><span class="cursor" id="cursor">&nbsp;</span>
+  <!-- QUIZ -->
+  <section id="quizSec">
+    <div class="wrap" style="margin-bottom:18px">
+      <span class="eyebrow">Quiz time</span>
+      <h2 class="grad">Prove it, bestie 😏</h2>
+    </div>
+    <div class="quiz-card reveal in" id="quizCard">
+      <div class="bar"><i id="bar"></i></div>
+      <div class="meta"><span id="qcount">Question 1 of 10</span><span id="score">Score: 0</span></div>
+      <div class="qtext" id="qtext"></div>
+      <div class="opts" id="opts"></div>
+      <div class="feedback" id="feedback"></div>
+      <button class="btn next" id="nextBtn">Next →</button>
+    </div>
+  </section>
+
+  <!-- SCORE -->
+  <section id="scoreSec" style="display:none">
+    <div class="wrap reveal in">
+      <span class="eyebrow">The verdict</span>
+      <div class="ring">
+        <svg width="180" height="180">
+          <circle cx="90" cy="90" r="80" stroke="rgba(255,255,255,.12)" stroke-width="14" fill="none"/>
+          <circle id="ringFill" cx="90" cy="90" r="80" stroke="url(#g)" stroke-width="14" fill="none" stroke-linecap="round" stroke-dasharray="502" stroke-dashoffset="502"/>
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ce0b2"/><stop offset="1" stop-color="#ffce6b"/></linearGradient></defs>
+        </svg>
+        <div class="num"><b id="scoreNum">0/10</b><span>YOU SCORED</span></div>
       </div>
-    </div>
-    <div class="scroll-hint">scroll ↓</div>
-  </section>
-
-  <!-- MESSAGE -->
-  <section>
-    <div class="wrap reveal" style="text-align:center">
-      <span class="eyebrow">Why you</span>
-      <h2 class="grad">Every time I see you,<br/>my whole day gets brighter</h2>
-      <p class="lead" style="margin:18px auto 0">
-        I don't really know the perfect words, so I built this little corner of the
-        internet instead. It's small — but every pixel here is thinking about you.
-      </p>
+      <h2 class="grad" id="verdictTitle">Let's see…</h2>
+      <p class="lead" id="verdictMsg"></p>
+      <button class="btn" id="toStory" style="margin-top:26px">See how our story began →</button>
+      <div style="margin-top:14px"><a href="#" id="retry" style="color:var(--mint);font-size:14px;text-decoration:underline;cursor:pointer">play again</a></div>
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section>
-    <div class="wrap reveal" style="text-align:center;width:100%">
-      <span class="eyebrow">My favourite views</span>
-      <h2 class="grad">You, simply being you</h2>
-      <div class="gallery">
-        <div class="card" data-full="media/photo-hero.jpg"><img src="media/photo-hero.jpg" alt=""><div class="glow"></div><div class="cap">that smile 💗</div></div>
-        <div class="card" data-full="media/photo-2.jpg"><img src="media/photo-2.jpg" alt=""><div class="glow"></div><div class="cap">effortless ✨</div></div>
-        <div class="card" data-full="media/photo-3.jpg"><img src="media/photo-3.jpg" alt=""><div class="glow"></div><div class="cap">my favourite 🌸</div></div>
+  <!-- STORY -->
+  <section id="storySec">
+    <div class="wrap reveal" style="width:min(720px,100%)">
+      <span class="eyebrow">How our story began</span>
+      <h2 class="grad">It started on a train 🚆</h2>
+      <div class="story-photos">
+        <img src="media/photo-hero.jpg" alt="Kalyani" data-full="media/photo-hero.jpg"/>
+        <img src="media/photo-2.jpg" alt="Kalyani" data-full="media/photo-2.jpg"/>
+        <img src="media/photo-3.jpg" alt="Kalyani" data-full="media/photo-3.jpg"/>
       </div>
-      <p class="lead" style="margin:26px auto 0;opacity:.8">tap any photo to see it bigger</p>
-    </div>
-  </section>
-
-  <!-- VIDEO REEL -->
-  <section>
-    <div class="wrap reveal" style="text-align:center;width:100%">
-      <span class="eyebrow">Press play</span>
-      <h2 class="grad">This one's my favourite of you</h2>
-      <p class="lead" style="margin:14px auto 0">turn the sound on 🔊</p>
+      <div class="timeline">
+        <div class="tl"><h4>2024 · Cumbum Station</h4><p>Guntur to Tirupati. A long train ride that should've just been another journey. The train pulled into Cumbum station — and that's where everything quietly changed.</p></div>
+        <div class="tl"><h4>A random old man 👴</h4><p>It started with the most ordinary thing — a casual chat with an old man on the train. Somewhere between his stories, you and I started talking… and somehow we just never stopped.</p></div>
+        <div class="tl"><h4>Our running joke 😄</h4><p>Then came the teasing. The endless jokes (yes, the weight ones too 🙈) — the kind only real friends are allowed to make. That's when I knew this one was going to last.</p></div>
+        <div class="tl"><h4>Strangers → best friends 💚</h4><p>From two strangers sharing a train compartment to <i>this</i> — you knowing me better than almost anyone. Not bad for a journey that started by accident.</p></div>
+      </div>
       <div class="video-frame">
         <video src="media/reel.mp4" controls playsinline preload="metadata" poster="media/photo-hero.jpg"></video>
       </div>
-    </div>
-  </section>
 
-  <!-- VIDEO CLIP -->
-  <section>
-    <div class="wrap reveal" style="text-align:center;width:100%">
-      <span class="eyebrow">One more</span>
-      <h2 class="grad">…and this one too 🥰</h2>
-      <div class="vid-grid">
-        <div class="video-frame">
-          <video src="media/clip.mp4" controls playsinline preload="metadata"></video>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LETTER -->
-  <section>
-    <div class="wrap reveal">
       <div class="letter">
-        <span class="eyebrow">A tiny confession</span>
-        <h2 class="grad">You make ordinary days<br/>feel like something special</h2>
-        <p class="lead" style="margin:18px auto 0">
-          Thank you for the laughs, the little talks, and just for being you.
-          You matter to me more than I usually say out loud — so I'm saying it here,
-          where it'll always be saved. 💖
+        <span class="eyebrow">One last thing, Kalyani</span>
+        <h2 class="grad">Promise me this</h2>
+        <p class="lead">
+          We met as strangers on a train, but somewhere along the way you became one of the few people I never want to lose.
+          So here's the only thing I'll ever ask of you — through every station life takes us to, the loud days and the silent ones,
+          let's stay <i>this</i>. You and me, same silly jokes, same comfortable silences — best friends, till the very end of the line. 💚
         </p>
-        <div class="sign">— with all my heart</div>
-        <button class="love-btn" id="loveBtn">Send a little love 💕</button>
+        <div class="sign">— Prem</div>
+        <button class="btn" id="loveBtn" style="margin-top:22px">Send some love back 💚</button>
       </div>
     </div>
+    <div class="scroll-hint" style="display:none"></div>
   </section>
-
 </main>
 
-<button id="music" title="music">♪</button>
-
-<footer>
-  Made with <span class="heart">♥</span> just for you · 2026
-</footer>
-
-<div id="lb"><img src="" alt="" /></div>
+<footer>Made with <span class="h">♥</span> by Prem · for Kalyani · 2026</footer>
+<div id="lb"><img src="" alt=""/></div>
 
 <script>
-/* ---------- floating hearts background ---------- */
+/* ================= QUIZ DATA ================= */
+const QUIZ=[
+  {q:"Let's start easy — what's my all-time favourite food?",
+   o:["Chicken curry","Mutton biryani","Paneer butter masala","Chicken 65"],a:0,
+   note:"Chicken curry, obviously. You've watched me finish a whole bowl. 🍛"},
+  {q:"If I had to pick one colour as *mine*, which is it?",
+   o:["Blue","Green","Black","Red"],a:1,
+   note:"Green. 💚 It's literally all over this page."},
+  {q:"When's my birthday? (don't you dare forget)",
+   o:["9th May 2005","19th March 2005","9th March 2005","3rd September 2005"],a:2,
+   note:"9th March 2005. Mark it. Cake is mandatory. 🎂"},
+  {q:"Which movie can I watch on repeat?",
+   o:["SR Kalyanamandapam","Arjun Reddy","Jathi Ratnalu","Ala Vaikunthapurramuloo"],a:0,
+   note:"SR Kalyanamandapam — every single time. 🎬"},
+  {q:"Whose voice is always in my playlist?",
+   o:["Anirudh","Sid Sriram","Devi Sri Prasad","Armaan Malik"],a:1,
+   note:"Sid Sriram. That voice just hits different. 🎧"},
+  {q:"What's the one thing I'm genuinely scared of?",
+   o:["Heights","Being broke","Losing my friends","The dark"],a:2,
+   note:"Losing my friends. Which… is exactly why this quiz exists. 🥺"},
+  {q:"My biggest goal in life is basically to…",
+   o:["Get rich quick","Become famous","Keep my time happy","Travel the world"],a:2,
+   note:"To keep my time happy. Simple, but it's the whole point. ✨"},
+  {q:"What's my nickname — and who started it?",
+   o:["Nani — my parents","Chinna — my grandparents","Prince — my friends","Pandu — my cousins"],a:0,
+   note:"Nani, given by my parents. Only the special ones get to use it. 😌"},
+  {q:"One thing I genuinely can't live without?",
+   o:["My phone","My patience","Coffee","Music"],a:1,
+   note:"My patience. It's basically my superpower. 🧘"},
+  {q:"The habit you ALWAYS catch me doing in a group?",
+   o:["Talking non-stop","Laughing at everything","Going silent when everyone's loud","Always on my phone"],a:2,
+   note:"Going quiet while everyone's talking. And somehow you always notice. 👀"}
+];
+
+/* ================= QUIZ ENGINE ================= */
+let qi=0, sc=0, locked=false;
+const $=id=>document.getElementById(id);
+const KEYS=["A","B","C","D"];
+function render(){
+  locked=false;
+  const item=QUIZ[qi];
+  $("bar").style.width=((qi)/QUIZ.length*100)+"%";
+  $("qcount").textContent=`Question ${qi+1} of ${QUIZ.length}`;
+  $("score").textContent=`Score: ${sc}`;
+  $("qtext").textContent=item.q;
+  $("feedback").textContent="";
+  $("nextBtn").classList.remove("show");
+  const ob=$("opts");ob.innerHTML="";
+  item.o.forEach((txt,i)=>{
+    const b=document.createElement("button");
+    b.className="opt";
+    b.innerHTML=`<span class="key">${KEYS[i]}</span><span>${txt}</span>`;
+    b.onclick=()=>choose(i,b);
+    ob.appendChild(b);
+  });
+}
+function choose(i,btn){
+  if(locked)return;locked=true;
+  const item=QUIZ[qi];
+  const all=[...document.querySelectorAll(".opt")];
+  all.forEach(o=>o.classList.add("disabled"));
+  all[item.a].classList.add("correct");
+  if(i===item.a){sc++;$("feedback").innerHTML="<b>Yesss! ✅</b> "+item.note;}
+  else{btn.classList.add("wrong");$("feedback").innerHTML="<b>Nope ❌</b> "+item.note;}
+  $("score").textContent=`Score: ${sc}`;
+  $("bar").style.width=((qi+1)/QUIZ.length*100)+"%";
+  $("nextBtn").classList.add("show");
+}
+$("nextBtn").onclick=()=>{
+  qi++;
+  if(qi<QUIZ.length)render();
+  else showScore();
+};
+function showScore(){
+  $("quizSec").style.display="none";
+  $("scoreSec").style.display="flex";
+  $("scoreNum").textContent=`${sc}/10`;
+  const pct=sc/QUIZ.length;
+  const off=502-502*pct;
+  setTimeout(()=>{$("ringFill").style.transition="stroke-dashoffset 1.4s ease";$("ringFill").style.strokeDashoffset=off;},150);
+  let t,m;
+  if(sc>=8){t="Okay, you actually KNOW me 🥹";m="Best-friend certified. There's no faking a score like that — you've really been paying attention all this time. I'm lucky to have you.";}
+  else if(sc>=5){t="Not bad at all, bestie 💚";m="You know me pretty well — more than most people ever bother to. A few slip-ups, but your heart's clearly in the right place.";}
+  else{t="Kalyani… we seriously need to talk 😭";m="That score is a crime 😅 But you know what? You still showed up and played to the end — and honestly that says more about us than any score ever could. Love you anyway.";}
+  $("verdictTitle").textContent=t;$("verdictMsg").textContent=m;
+  burst(innerWidth/2,innerHeight*0.4,sc>=5?45:18);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+$("toStory").onclick=()=>$("storySec").scrollIntoView({behavior:"smooth"});
+$("retry").onclick=e=>{e.preventDefault();qi=0;sc=0;$("ringFill").style.strokeDashoffset=502;$("scoreSec").style.display="none";$("quizSec").style.display="flex";render();window.scrollTo({top:0,behavior:"smooth"});};
+
+/* ================= ENTER GATE ================= */
+$("startBtn").onclick=()=>{document.getElementById("gate").classList.add("hidden");render();burst(innerWidth/2,innerHeight/2,30);};
+
+/* ================= REVEAL + LIGHTBOX ================= */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.15});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+const lb=$("lb");
+document.querySelectorAll(".story-photos img").forEach(img=>img.onclick=()=>{lb.querySelector("img").src=img.dataset.full;lb.classList.add("show")});
+lb.onclick=()=>lb.classList.remove("show");
+$("loveBtn").onclick=()=>{for(let k=0;k<3;k++)setTimeout(()=>burst(innerWidth/2,innerHeight*.6,30),k*150)};
+
+/* ================= FLOATING HEARTS / LEAVES ================= */
 (function(){
-  const c=document.getElementById('hearts'),x=c.getContext('2d');
-  let w,h,hearts=[];
-  function size(){w=c.width=innerWidth;h=c.height=innerHeight}
-  size();addEventListener('resize',size);
-  function mk(burst,px,py){
-    return{
-      x:px!=null?px:Math.random()*w,
-      y:py!=null?py:h+20,
-      s:(burst?14:8)+Math.random()*16,
-      vy:-(burst?2+Math.random()*4:.5+Math.random()*1.2),
-      vx:(Math.random()-.5)*(burst?6:.8),
-      a:0,life:0,max:burst?90:600,
-      col:Math.random()<.5?'#ff5d8f':(Math.random()<.5?'#ff8fb1':'#ffcf7a'),
-      rot:Math.random()*Math.PI
-    };
-  }
-  for(let i=0;i<26;i++){let p=mk(false);p.y=Math.random()*h;hearts.push(p)}
-  function heart(px,py,s,col,a,rot){
-    x.save();x.translate(px,py);x.rotate(rot);x.scale(s/30,s/30);x.globalAlpha=a;
+  const c=$("fx"),x=c.getContext("2d");let w,h,parts=[];
+  function size(){w=c.width=innerWidth;h=c.height=innerHeight}size();addEventListener("resize",size);
+  const cols=["#1faa72","#7ce0b2","#ffce6b","#ff8a73"];
+  function mk(b,px,py){return{x:px??Math.random()*w,y:py??h+20,s:(b?14:8)+Math.random()*15,
+    vy:-(b?2+Math.random()*4:.5+Math.random()*1.1),vx:(Math.random()-.5)*(b?6:.8),
+    a:0,life:0,max:b?90:600,col:cols[Math.random()*cols.length|0],rot:Math.random()*6,b:b};}
+  for(let i=0;i<24;i++){let p=mk(false);p.y=Math.random()*h;parts.push(p)}
+  function heart(px,py,s,col,a,rot){x.save();x.translate(px,py);x.rotate(rot);x.scale(s/30,s/30);x.globalAlpha=a;
     x.beginPath();x.moveTo(0,0);
     x.bezierCurveTo(0,-3,-5,-15,-15,-15);x.bezierCurveTo(-29,-15,-29,3,-29,3);
     x.bezierCurveTo(-29,18,-12,28,0,38);x.bezierCurveTo(12,28,29,18,29,3);
     x.bezierCurveTo(29,3,29,-15,15,-15);x.bezierCurveTo(5,-15,0,-3,0,0);
-    x.closePath();x.fillStyle=col;x.shadowColor=col;x.shadowBlur=18;x.fill();x.restore();
-  }
-  function loop(){
-    x.clearRect(0,0,w,h);
-    for(let i=hearts.length-1;i>=0;i--){
-      let p=hearts[i];p.life++;p.x+=p.vx;p.y+=p.vy;p.vy+=.004;
-      p.a=Math.min(.85,p.a+.02);
-      if(p.life>p.max*.7)p.a-=.02;
+    x.closePath();x.fillStyle=col;x.shadowColor=col;x.shadowBlur=16;x.fill();x.restore();}
+  function loop(){x.clearRect(0,0,w,h);
+    for(let i=parts.length-1;i>=0;i--){let p=parts[i];p.life++;p.x+=p.vx;p.y+=p.vy;p.vy+=.004;
+      p.a=Math.min(.8,p.a+.02);if(p.life>p.max*.7)p.a-=.02;
       heart(p.x,p.y,p.s,p.col,Math.max(0,p.a),p.rot+=.01);
-      if(p.y<-40||p.a<=0){hearts.splice(i,1);if(!p.burst&&hearts.length<60)hearts.push(mk(false));}
-    }
-    requestAnimationFrame(loop);
-  }
+      if(p.y<-40||p.a<=0){parts.splice(i,1);if(!p.b&&parts.length<55)parts.push(mk(false));}}
+    requestAnimationFrame(loop);}
   loop();
-  window.__burst=function(px,py){for(let i=0;i<40;i++){let p=mk(true,px,py);p.burst=true;hearts.push(p);}};
+  window.burst=function(px,py,n){for(let i=0;i<(n||40);i++)parts.push(mk(true,px,py));};
 })();
-
-/* ---------- enter gate ---------- */
-const gate=document.getElementById('gate');
-document.getElementById('enterBtn').addEventListener('click',()=>{
-  gate.classList.add('hidden');
-  startTyper();
-  const m=document.getElementById('music');
-  // try to play reel audio softly as ambience is intrusive; instead just reveal music btn for user
-  m.style.display='flex';
-  window.__burst(innerWidth/2,innerHeight/2);
-});
-
-/* ---------- typewriter ---------- */
-function startTyper(){
-  const lines=["Hi you 👋","I made this just for you…","because you're really special to me 💖"];
-  const el=document.getElementById('typer');let li=0,ci=0;
-  function tick(){
-    if(li>=lines.length){document.getElementById('cursor').style.display='none';return;}
-    const cur=lines[li];
-    el.textContent=cur.slice(0,ci++);
-    if(ci>cur.length){li++;ci=0;setTimeout(tick,1100);}
-    else setTimeout(tick,55);
-  }
-  tick();
-}
-
-/* ---------- scroll reveal ---------- */
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.18});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-/* ---------- tilt on cards ---------- */
-document.querySelectorAll('.card').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
-    card.style.transform=`translateY(-8px) rotateY(${px*10}deg) rotateX(${-py*10}deg)`;
-  });
-  card.addEventListener('mouseleave',()=>card.style.transform='');
-  card.addEventListener('click',()=>openLb(card.dataset.full));
-});
-
-/* ---------- lightbox ---------- */
-const lb=document.getElementById('lb');
-function openLb(src){lb.querySelector('img').src=src;lb.classList.add('show')}
-lb.addEventListener('click',()=>lb.classList.remove('show'));
-
-/* ---------- love button ---------- */
-document.getElementById('loveBtn').addEventListener('click',(e)=>{
-  for(let k=0;k<3;k++)setTimeout(()=>window.__burst(innerWidth/2,innerHeight*.6),k*150);
-});
-
-/* ---------- music: loop reel audio when toggled ---------- */
-const music=document.getElementById('music');
-let amb;
-music.addEventListener('click',()=>{
-  if(!amb){amb=new Audio('media/reel.mp4');amb.loop=true;amb.volume=.45;}
-  if(amb.paused){amb.play().catch(()=>{});music.classList.add('spin');music.textContent='♫';}
-  else{amb.pause();music.classList.remove('spin');music.textContent='♪';}
-});
-
-/* pause page videos -> avoid double audio with ambience */
-document.querySelectorAll('video').forEach(v=>v.addEventListener('play',()=>{if(amb&&!amb.paused){amb.pause();music.classList.remove('spin');music.textContent='♪';}}));
 </script>
 </body>
 </html>
