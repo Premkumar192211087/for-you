@@ -176,10 +176,6 @@
       <h2 class="grad" id="verdictTitle">Let's see…</h2>
       <p class="lead" id="verdictMsg"></p>
       <p class="send-hint" id="sendStatus">📨 sending your results to Prem…</p>
-      <div class="send-row">
-        <a class="btn ghost" id="waBtn" target="_blank" rel="noopener">also send on WhatsApp 💬</a>
-        <a class="btn ghost" id="mailBtn">…or email ✉️</a>
-      </div>
       <button class="btn" id="toStory" style="margin-top:26px">See how our story began →</button>
       <div style="margin-top:14px"><a href="#" id="retry" style="color:var(--mint);font-size:14px;text-decoration:underline;cursor:pointer">play again</a></div>
     </div>
@@ -315,8 +311,6 @@ function showScore(){
   else{t="Kalyani… we seriously need to talk 😭";m="That score is a crime 😅 But you know what? You still showed up and played to the end — and honestly that says more about us than any score ever could. Love you anyway.";}
   $("verdictTitle").textContent=t;$("verdictMsg").textContent=m;lastVerdict=t;
   const summary=buildSummary();
-  $("waBtn").href="https://wa.me/918985545407?text="+encodeURIComponent(summary);
-  $("mailBtn").href="mailto:tprem6565@gmail.com?subject="+encodeURIComponent("Kalyani's quiz results 💚")+"&body="+encodeURIComponent(summary);
   sendResults(summary);
   burst(innerWidth/2,innerHeight*0.4,sc>=5?45:18);
   window.scrollTo({top:0,behavior:"smooth"});
