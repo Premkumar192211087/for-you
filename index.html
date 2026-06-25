@@ -107,8 +107,12 @@
   .tl::before{content:'';position:absolute;left:-9px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(31,170,114,.25)}
   .tl h4{font-family:'Dancing Script';font-size:24px;color:var(--gold);margin-bottom:4px}
   .tl p{font-weight:300;color:#e7fff2;opacity:.92;line-height:1.75;font-size:15px}
-  .video-frame{width:min(380px,90vw);margin:26px auto 0;border-radius:26px;overflow:hidden;border:3px solid rgba(255,255,255,.4);box-shadow:0 26px 70px rgba(31,170,114,.35);background:#000}
-  .video-frame video{width:100%;display:block;background:#000}
+  .feature-photo{position:relative;width:min(360px,88vw);margin:28px auto 0;border-radius:26px;overflow:hidden;
+    border:3px solid rgba(255,255,255,.4);box-shadow:0 26px 70px rgba(31,170,114,.35);cursor:zoom-in}
+  .feature-photo img{width:100%;display:block;aspect-ratio:3/4;object-fit:cover;transition:transform .6s}
+  .feature-photo:hover img{transform:scale(1.06)}
+  .feature-photo .cap{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 14px;text-align:center;
+    font-family:'Dancing Script';font-size:23px;color:#fff;background:linear-gradient(transparent,rgba(4,25,15,.8))}
   .letter{background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.18);
     border-radius:26px;padding:clamp(26px,5vw,50px);backdrop-filter:blur(8px);box-shadow:0 30px 80px rgba(0,0,0,.4);max-width:680px;margin:30px auto 0}
   .letter .sign{font-family:'Dancing Script';font-size:32px;color:var(--mint);margin-top:20px}
@@ -187,8 +191,9 @@
         <div class="tl"><h4>Our running joke 😄</h4><p>Then came the teasing. The endless jokes (yes, the weight ones too 🙈) — the kind only real friends are allowed to make. That's when I knew this one was going to last.</p></div>
         <div class="tl"><h4>Strangers → best friends 💚</h4><p>From two strangers sharing a train compartment to <i>this</i> — you knowing me better than almost anyone. Not bad for a journey that started by accident.</p></div>
       </div>
-      <div class="video-frame">
-        <video src="media/reel.mp4" controls playsinline preload="metadata" poster="media/photo-hero.jpg"></video>
+      <div class="feature-photo">
+        <img src="media/photo-2.jpg" alt="Kalyani" data-full="media/photo-2.jpg"/>
+        <span class="cap">the day this all began 💚</span>
       </div>
 
       <div class="letter">
@@ -309,7 +314,7 @@ $("startBtn").onclick=()=>{document.getElementById("gate").classList.add("hidden
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.15});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
 const lb=$("lb");
-document.querySelectorAll(".story-photos img").forEach(img=>img.onclick=()=>{lb.querySelector("img").src=img.dataset.full;lb.classList.add("show")});
+document.querySelectorAll(".story-photos img, .feature-photo img").forEach(img=>img.onclick=()=>{lb.querySelector("img").src=img.dataset.full;lb.classList.add("show")});
 lb.onclick=()=>lb.classList.remove("show");
 $("loveBtn").onclick=()=>{for(let k=0;k<3;k++)setTimeout(()=>burst(innerWidth/2,innerHeight*.6,30),k*150)};
 
