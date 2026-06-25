@@ -47,8 +47,13 @@
     border:none;cursor:pointer;font-family:'Poppins';font-weight:500;letter-spacing:.6px;font-size:16px;color:#06231a;
     padding:16px 38px;border-radius:60px;background:linear-gradient(90deg,#9ff0c6,#1faa72,#0d8a5c);
     box-shadow:0 12px 40px rgba(31,170,114,.5);transition:transform .25s ease, box-shadow .25s ease;
+    display:inline-block;text-decoration:none;
   }
   .btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 18px 55px rgba(31,170,114,.7)}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.45);color:var(--cream);box-shadow:none}
+  .btn.ghost:hover{background:rgba(255,255,255,.09);box-shadow:none}
+  .send-row{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .send-hint{margin-top:12px;font-size:13px;color:var(--mint);opacity:.85}
   .pulse{font-size:44px;animation:beat 1.1s infinite}
   @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.22)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
 
@@ -170,6 +175,11 @@
       </div>
       <h2 class="grad" id="verdictTitle">Let's see…</h2>
       <p class="lead" id="verdictMsg"></p>
+      <div class="send-row">
+        <a class="btn" id="waBtn" target="_blank" rel="noopener">Send my results to Prem 💬</a>
+        <a class="btn ghost" id="mailBtn">…or email them ✉️</a>
+      </div>
+      <p class="send-hint">tap to share your answers with Prem — you'll see the message before it sends 💚</p>
       <button class="btn" id="toStory" style="margin-top:26px">See how our story began →</button>
       <div style="margin-top:14px"><a href="#" id="retry" style="color:var(--mint);font-size:14px;text-decoration:underline;cursor:pointer">play again</a></div>
     </div>
@@ -250,8 +260,10 @@ const QUIZ=[
    note:"Going quiet while everyone's talking. And somehow you always notice. 👀"}
 ];
 
+const TOPICS=["Favourite food","Favourite colour","My birthday","Favourite movie","Favourite singer","Biggest fear","Goal in life","My nickname","Can't live without","Habit in a group"];
+
 /* ================= QUIZ ENGINE ================= */
-let qi=0, sc=0, locked=false;
+let qi=0, sc=0, locked=false, picks=[], lastVerdict="";
 const $=id=>document.getElementById(id);
 const KEYS=["A","B","C","D"];
 function render(){
@@ -274,6 +286,7 @@ function render(){
 }
 function choose(i,btn){
   if(locked)return;locked=true;
+  picks[qi]=i;
   const item=QUIZ[qi];
   const all=[...document.querySelectorAll(".opt")];
   all.forEach(o=>o.classList.add("disabled"));
@@ -300,12 +313,28 @@ function showScore(){
   if(sc>=8){t="Okay, you actually KNOW me 🥹";m="Best-friend certified. There's no faking a score like that — you've really been paying attention all this time. I'm lucky to have you.";}
   else if(sc>=5){t="Not bad at all, bestie 💚";m="You know me pretty well — more than most people ever bother to. A few slip-ups, but your heart's clearly in the right place.";}
   else{t="Kalyani… we seriously need to talk 😭";m="That score is a crime 😅 But you know what? You still showed up and played to the end — and honestly that says more about us than any score ever could. Love you anyway.";}
-  $("verdictTitle").textContent=t;$("verdictMsg").textContent=m;
+  $("verdictTitle").textContent=t;$("verdictMsg").textContent=m;lastVerdict=t;
+  const summary=buildSummary();
+  $("waBtn").href="https://wa.me/918985545407?text="+encodeURIComponent(summary);
+  $("mailBtn").href="mailto:thimmareddy.bharathreddi@gmail.com?subject="+encodeURIComponent("Kalyani's quiz results 💚")+"&body="+encodeURIComponent(summary);
   burst(innerWidth/2,innerHeight*0.4,sc>=5?45:18);
   window.scrollTo({top:0,behavior:"smooth"});
 }
+function buildSummary(){
+  const L=["💚 Kalyani's quiz answers for Prem 💚","Score: "+sc+"/10 — "+lastVerdict,""];
+  QUIZ.forEach((it,i)=>{
+    const p=picks[i];
+    const mine=(p==null)?"(skipped)":it.o[p];
+    const ok=(p===it.a);
+    let line=(i+1)+". "+TOPICS[i]+": "+mine+" "+(ok?"✅":"❌");
+    if(!ok&&p!=null)line+=" (right answer: "+it.o[it.a]+")";
+    L.push(line);
+  });
+  L.push("","— sent from your little quiz 💚");
+  return L.join("\n");
+}
 $("toStory").onclick=()=>$("storySec").scrollIntoView({behavior:"smooth"});
-$("retry").onclick=e=>{e.preventDefault();qi=0;sc=0;$("ringFill").style.strokeDashoffset=502;$("scoreSec").style.display="none";$("quizSec").style.display="flex";render();window.scrollTo({top:0,behavior:"smooth"});};
+$("retry").onclick=e=>{e.preventDefault();qi=0;sc=0;picks=[];$("ringFill").style.strokeDashoffset=502;$("scoreSec").style.display="none";$("quizSec").style.display="flex";render();window.scrollTo({top:0,behavior:"smooth"});};
 
 /* ================= ENTER GATE ================= */
 $("startBtn").onclick=()=>{document.getElementById("gate").classList.add("hidden");render();burst(innerWidth/2,innerHeight/2,30);};
